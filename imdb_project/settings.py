@@ -16,8 +16,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY: keep this secret in production! Using DEBUG for dev.
 SECRET_KEY = "django-insecure-onxc+4qm(f^dvs0*fdmf+#l)8#css+yq+0ya(qcfdgx8m59ix^"
-DEBUG = True
-ALLOWED_HOSTS = []  # Local development only
+DEBUG = False
+ALLOWED_HOSTS = [
+    'anthonyn30.pythonanywhere.com',
+]
 
 # --- Installed Applications ---
 INSTALLED_APPS = [
