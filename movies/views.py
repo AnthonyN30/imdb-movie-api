@@ -84,17 +84,16 @@ def top_genres_view(request):
 
 @api_view(['GET'])
 def recent_hits_view(request):
-    """
-    Return movies released in the last 5 years with a vote_average >= 8.0.
-    """
     current = timezone.now().year
-    cutoff = str(current - 5)  # e.g. if now is 2025, cutoff = '2020'
+    # read ?years= from URL, default 5 Movies from last 10 years with rating ≥ 8 (use `?years=N` to change window)
+    years = int(request.query_params.get('years', 10))
+    cutoff = str(current - years)
     hits = Movie.objects.filter(
         release_date__gte=cutoff,
         vote_average__gte=8.0
     )
-    # Reuse the serializer for consistent output
     return Response(MovieSerializer(hits, many=True).data)
+
 
 
 @api_view(['GET'])
