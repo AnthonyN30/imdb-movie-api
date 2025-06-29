@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Add a Movie</title>
+        <style>
+          body { 
+            font-family: sans-serif; 
+            max-width: 600px; 
+            margin: 2em auto; 
+            padding: 0 1em; 
+            line-height: 1.5;
+          }
+          h1 { text-align: center; color: #333; }
+          form { background: #fafafa; padding: 1em; border: 1px solid #ddd; border-radius: 5px; }
+          input, textarea { width: 100%; padding: 0.5em; margin: 0.5em 0; border: 1px solid #ccc; border-radius: 3px; }
+          button { 
+            display: block; 
+            width: 100%; 
+            padding: 0.7em; 
+            background: #0066cc; 
+            color: white; 
+            border: none; 
+            border-radius: 3px; 
+            font-size: 1em;
+          }
+          button:hover { background: #005bb5; }
+          a { display: block; margin-top: 1em; color: #0066cc; }
+        </style>
+      </head>
+      
+<body>
+  <h1>Add New Movie</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Movie</button>
+  </form>
+  <p><a href="{% url 'api-home' %}">← Back to API Home</a></p>
+</body>
+</html>

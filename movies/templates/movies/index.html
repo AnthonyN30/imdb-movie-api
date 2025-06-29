@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Movie API Home</title>
+    <style>
+      body { 
+        font-family: sans-serif; 
+        max-width: 800px; 
+        margin: 2em auto; 
+        padding: 0 1em; 
+        line-height: 1.5;
+      }
+      h1 { text-align: center; color: #333; }
+      ul { list-style: none; padding: 0; }
+      li { margin: 0.5em 0; }
+      a { 
+        text-decoration: none; 
+        color: #0066cc; 
+        font-weight: bold; 
+      }
+      a:hover { text-decoration: underline; }
+      code { background: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to My Movie API</h1>
+
+    <p><strong>Python v:</strong> {{ python_version }}</p>
+    <p><strong>Django v:</strong> {{ django_version }}</p>
+
+    <p><strong>Key Packages:</strong></p>
+    <ul>
+      {% for pkg in packages %}
+        <li>{{ pkg }}</li>
+      {% endfor %}
+    </ul>
+
+    <p>
+      <strong>Admin Login:</strong>
+      user <strong>{{ admin_username }}</strong>
+      / pass <strong>{{ admin_password }}</strong>
+    </p>
+
+    <h2>Available Endpoints</h2>
+    <ul>
+      <li>
+        <a href="{% url 'movie-list-create' %}">
+          /api/movies/
+        </a>
+        — List all movies (GET) or add a new one (POST)
+      </li>
+      <li>
+        <a href="{% url 'movie-detail' 1 %}">
+          /api/movies/1/
+        </a>
+        — Retrieve, update, or delete movie with ID=1 (GET/PUT/DELETE)
+      </li>
+      <li>
+        <a href="{% url 'top-genres' %}">
+          /api/movies/top_genres/
+        </a>
+        — Get genres ranked by movie count
+      </li>
+      <li>
+        <a href="{% url 'recent-hits' %}">
+          /api/movies/recent_hits/
+        </a>
+        — Movies from last 5 years with rating ≥ 8
+      </li>
+      <li>
+        <a href="{% url 'count-by-year' %}">
+          /api/movies/count_by_year/
+        </a>
+        — Number of movies released per year
+      </li>
+      <li>
+        <a href="{% url 'avg-rating-by-genre' %}">
+          /api/movies/avg_rating_by_genre/
+        </a>
+        — Average IMDb score for each genre
+      </li>
+       <h2>Extra Interfaces</h2>
+ <ul>
+   <li>
+     <a href="{% url 'movie-form' %}">/api/movies/add/</a>
+     — HTML form to add a new movie with custom validation
+   </li>
+ </ul>
+
+    </ul>
+
+    <h2>API Documentation</h2>
+    <ul>
+      <li>
+        <a href="{% url 'schema' %}">/api/schema/</a>
+        — Raw OpenAPI schema (YAML/JSON)
+      </li>
+      <li>
+        <a href="{% url 'swagger-ui' %}">/api/docs/</a>
+        — Interactive Swagger UI for exploring endpoints
+      </li>
+    </ul>
+  </body>
+</html>
